@@ -37,7 +37,7 @@ ORDER BY amount DESC
 
 -- Find payments that happened in March 2007
 SELECT * FROM payment
-WHERE payment_date BETWEEN '2007-03-01 00:00:00' AND '2007-04-01 00:00:00'
+WHERE payment_date BETWEEN '2007-03-01' AND '2007-03-31'
 
 -- Find all films which title contains the word “north”
 SELECT * FROM film
@@ -52,14 +52,26 @@ SELECT * FROM actor
 WHERE first_name ILIKE '__y'
 
 
+----------- Questions I created -----------
 
+-- select all adresses, sort them by postal code Ascending order. return address, district, postal_code only
+SELECT address, district, postal_code FROM address
+ORDER BY postal_code ASC
 
+--find all films with rental date greater than 2.5 and with the duration under two hours 
+SELECT * FROM film
+WHERE rental_rate > 2.5 AND length <120
 
+--find all actors with name 9 character length, return only first_name and last_name as “full_name”
+SELECT first_name ||' '|| last_name AS full_name FROM actor
+WHERE first_name LIKE '_________'
 
+--Find all adresses with empty postal_code and phone
+SELECT * FROM address
+WHERE postal_code = '' AND phone =''
 
-
-
-
-
-
-
+--Find last 5 payments for April month
+SELECT * FROM payment
+WHERE payment_date BETWEEN '2007-04-01' AND '2007-05-01'
+ORDER BY payment_date DESC
+LIMIT 5
